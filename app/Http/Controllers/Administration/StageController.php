@@ -20,7 +20,7 @@ class StageController extends Controller
     {
         $stages = Stage::all();
 
-        return view('Administation.Poll.stages.index', [
+        return view('Administration.Poll.stages.index', [
            'stages' => $stages
         ]);
     }
@@ -36,7 +36,7 @@ class StageController extends Controller
     {
         $types = Type::all();
 
-        return view('Administation.Poll.stages.create', [
+        return view('Administration.Poll.stages.create', [
             'types' => $types
         ]);
     }
@@ -89,7 +89,7 @@ class StageController extends Controller
             }
         }
 
-        return redirect('/dashboard/formulario/stages');
+        return redirect(route('stages.index'));
 
     }
 
@@ -119,7 +119,7 @@ class StageController extends Controller
         $questions = $stage->load('questions')->questions;
         $types = Type::all();
 
-        return view('Administation.Poll.stages.edit', [
+        return view('Administration.Poll.stages.edit', [
             'stage' => $stage,
             'questions' => $questions,
             'types' => $types
@@ -220,7 +220,7 @@ class StageController extends Controller
             $question->delete();
         }
 
-        return redirect('/dashboard/formulario/stages');
+        return redirect(route('stages.index'));
 
     }
 
@@ -235,6 +235,6 @@ class StageController extends Controller
     {
         $stage->delete();
 
-        return redirect('/dashboard/formulario/stages');
+        return redirect(route('stages.index'));
     }
 }

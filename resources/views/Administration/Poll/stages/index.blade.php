@@ -1,21 +1,39 @@
 @extends('layouts.app-db')
 
 @section('content')
-    <a class="btn btn-primary" href="/dashboard/formulario/stages/create">Nuevo</a>
 
-    <table class="table">
-        <thead>
-            <th scope="col">Titulo</th>
-            <th scope="col">Descripcion</th>
-        </thead>
+    @if($errors->has('query'))
+        <div class="alert alert-danger" role="alert">
+            No se puede eliminar la etapa porque ya esta publicada
+        </div>
+    @endif
+    <div class="container border my-5" style="width:94%;">
+        <div class="row justify-content-end my-3">
+            <div class="col ml-5">
+                <h2 class="font-weight-bold">Etapas</h2>
+            </div>
+            <div class="col-3 mr-4">
+                <a href="/dashboard/formulario/stages/create" class="btn btn-success rounded rounded-circle"><i class="fas fa-plus text-dark"></i></a>
+            </div>
+        </div>
+        <table class="table text-center">
+            <thead>
+            <th>#</th>
+            <th >Titulo</th>
+            <th >Descripcion</th>
+            <th>acciones</th>
+            </thead>
 
-        <tbody>
+            <tbody>
+
             @foreach($stages as $stage)
                 <tr >
+                    <td>{{ $stage->id }}</td>
                     <td>{{ $stage->title }}</td>
                     <td>{{ $stage->description }}</td>
                     <td>
-                        <a class="btn btn-warning" href="/dashboard/formulario/stages/{{$stage->id}}/edit">Editar</a>
+                        <a href="/dashboard/formulario/stages/{{$stage->id}}/edit" class="btn btn-secondary">Editar</a>
+                        &nbsp;
                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal{{ $stage->id }}">
                             Eliminar
                         </button>
@@ -44,13 +62,14 @@
                                 </form>
                             </div>
                         </div>
-
                     </td>
                 </tr>
             @endforeach
-        </tbody>
+            </tbody>
 
-    </table>
+        </table>
+    </div>
+
 
 @endsection
 

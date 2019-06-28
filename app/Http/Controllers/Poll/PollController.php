@@ -73,7 +73,7 @@ class PollController extends Controller
         $user = User::where('survey_token', $key)->get()->first();
 
         if (!isset($user)) {
-            // TODO: Envio de error
+            return redirect(route('welcome'));
         }
 
         Auth::login($user);
@@ -104,6 +104,8 @@ class PollController extends Controller
         }
 
         $userAnswered->survey_made = true;
+        $user = $userAnswered->save();
+        dd($userAnswered->load('answers'));
 
         return view('Poll.completeSurvey');
 

@@ -18,7 +18,7 @@ class AdminController extends Controller
     {
         $admins = Admin::all();
 
-        return view('Administation.Users.index', [
+        return view('Administration.Users.index', [
             'admins' => $admins
         ]);
     }

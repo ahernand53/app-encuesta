@@ -11,6 +11,9 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://kit.fontawesome.com/5f76a88ed9.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="{{ asset('js/graphics.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -18,6 +21,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
@@ -73,20 +77,25 @@
         </nav>
 
         <div class="row">
-            <nav class="col-sm-3" id="sidebar">
-                <div class="bg-light" id="sidebar-wrapper">
-                    <div class="list-group list-group-flush">
-                        <a href="{{ route('home') }}" class="list-group-item list-group-item-action list-group-item-dark bg-light">Dashboard</a>
-                        @if(auth()->user()->isSuper == 1)
-                            <a href="{{ route('stages.index') }}" class="list-group-item list-group-item-action list-group-item-dark bg-light">Formulario</a>
-                            <a href="{{ route('usuarios.index') }}" class="list-group-item list-group-item-action list-group-item-dark bg-light">Usuarios</a>
-                        @endif
-                        <a href="#" class="list-group-item list-group-item-action list-group-item-dark bg-light">Encuestas</a>
-                    </div>
+            <div class="bg-light border-right text-center col-md-3" id="sidebar-wrapper">
+                <br>
+                <div class="sidebar-heading">
+                    <img src="{{ asset('images/logoSena.png') }}" alt="Logo Sena" width="120px" />
                 </div>
-            </nav>
+                <br>
+                <div class="list-group list-group-flush text-justify">
+                    <a href="{{ route('home') }}" class="list-group-item list-group-item-action bg-light"><i
+                                class="fas fa-home"></i>&nbsp;Panel</a>
+                    <a href="{{ route('usuarios.index') }}" class="list-group-item list-group-item-action bg-light"><i
+                                class="fas fa-user"></i>&nbsp;Usuario</a>
+                    <a href="#" class="list-group-item list-group-item-action bg-light"><i
+                                class="fas fa-sticky-note"></i>&nbsp;Encuestados</a>
+                    <a href="{{ route('stages.index') }}" class="list-group-item list-group-item-action bg-light"><i
+                                class="fas fa-file-medical"></i>&nbsp;Formulario</a>
+                </div>
+            </div>
 
-            <main class="col-6">
+            <main class="col">
                 @yield('content')
             </main>
         </div>

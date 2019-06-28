@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Stage;
+use App\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,11 +25,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('welcome');
-    }
+        $users = User::all();
+        $stages = Stage::all();
 
-    public function admin()
-    {
-        return view('Administation.dashboard');
+        return view('Administration.dashboard', [
+            'users' => $users,
+            'stages' => $stages
+        ]);
     }
 }
