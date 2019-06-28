@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('age')->nullable();
             $table->string('gender')->nullable();
             $table->string('address')->nullable();
-            $table->string('civil_status');
+            $table->string('civil_status')->nullable();
             $table->boolean('survey_made')->default(false);
             $table->string('survey_token');
             $table->rememberToken();

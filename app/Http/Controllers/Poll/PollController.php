@@ -56,13 +56,11 @@ class PollController extends Controller
         $user->name = $request->get('name');
         $user->lastname = $request->get('lastname');
         $user->email = $request->get('email');
+        $user->civil_status = 'otro';
         $user->survey_token = str_random(42);
         $user->remember_token = str_random(10);
 
-        $prueba = $user->save();
-
-        dd($prueba);
-
+        $user->save();
         return view('Poll.completeRegister');
 
     }
@@ -113,8 +111,6 @@ class PollController extends Controller
         ]);
 
         $userAnswered->save();
-
-        dd($userAnswered);
 
         return view('Poll.completeSurvey');
 
