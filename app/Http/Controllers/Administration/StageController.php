@@ -67,7 +67,9 @@ class StageController extends Controller
                 if ($key == 0) {
 
                     if ($data == '') {
-                        /*TODO: AGREGAR ENVIO DE ERROR*/
+                        return back()->withErrors([
+                            'title' => 'empty'
+                        ])->withInput();
                     }
 
                     $question_test = new Question([
@@ -164,7 +166,9 @@ class StageController extends Controller
 
 
             if ($title == '') {
-                /*TODO: AGREGAR ENVIO DE ERROR*/
+                return back()->withErrors([
+                    'title' => 'empty'
+                ])->withInput();
             }
 
             $question_test = Question::updateOrCreate([
@@ -183,7 +187,9 @@ class StageController extends Controller
                     foreach ($answers as $id_a => $title) {
 
                         if ($title == '') {
-                            /*TODO: AGREGAR ENVIO DE ERROR*/
+                            return back()->withErrors([
+                                'title' => 'empty'
+                            ])->withInput();
                         }
 
                         $answer = Question::find($question)->answers()->updateOrCreate([

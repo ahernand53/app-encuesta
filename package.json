@@ -20,6 +20,7 @@
     "vue": "^2.5.7"
   },
   "dependencies": {
+    "jquery": "^3.4.1",
     "materialize-css": "^1.0.0-rc.2",
     "materialize-stepper": "^3.0.1"
   }

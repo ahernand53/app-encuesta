@@ -8,6 +8,7 @@
 require('./bootstrap');
 require('materialize-stepper/dist/js/mstepper.min');
 require('materialize-css/dist/js/materialize');
+require('jquery/dist/jquery.min');
 
 window.Vue = require('vue');
 

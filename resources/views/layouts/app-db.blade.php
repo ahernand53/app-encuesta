@@ -14,6 +14,7 @@
     <script src="https://kit.fontawesome.com/5f76a88ed9.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="{{ asset('js/graphics.js') }}"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -88,7 +89,7 @@
                                 class="fas fa-home"></i>&nbsp;Panel</a>
                     <a href="{{ route('usuarios.index') }}" class="list-group-item list-group-item-action bg-light"><i
                                 class="fas fa-user"></i>&nbsp;Usuario</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light"><i
+                    <a href="{{ route('encuestas.index') }}" class="list-group-item list-group-item-action bg-light"><i
                                 class="fas fa-sticky-note"></i>&nbsp;Encuestados</a>
                     <a href="{{ route('stages.index') }}" class="list-group-item list-group-item-action bg-light"><i
                                 class="fas fa-file-medical"></i>&nbsp;Formulario</a>

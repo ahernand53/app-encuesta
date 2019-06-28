@@ -19,6 +19,9 @@ Route::middleware('admin')->prefix('dashboard')->group(function () {
     // USUARIOS - ADMINS
     Route::resource('/usuarios', 'User\AdminController');
 
+    // USUARIOS - ENCUESTADOS
+    Route::resource('/encuestas', 'User\UserController');
+
 });
 
 

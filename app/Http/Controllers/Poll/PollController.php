@@ -6,9 +6,11 @@ use App\Answer;
 use App\Http\Controllers\Controller;
 use App\Stage;
 use App\User;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class PollController extends Controller
 {
@@ -25,7 +27,7 @@ class PollController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function register()
     {
@@ -36,7 +38,7 @@ class PollController extends Controller
 
     /**
      * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      * @throws \Illuminate\Validation\ValidationException
      */
     public function sendRegister(Request $request)
@@ -65,7 +67,7 @@ class PollController extends Controller
 
     /**
      * @param $key
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function makeSurvey($key)
     {
@@ -90,6 +92,7 @@ class PollController extends Controller
 
     /**
      * @param Request $request
+     * @return Factory|View
      */
     public function madeSurvey(Request $request) {
 
@@ -104,8 +107,7 @@ class PollController extends Controller
         }
 
         $userAnswered->survey_made = true;
-        $user = $userAnswered->save();
-        dd($userAnswered->load('answers'));
+        $userAnswered->save();
 
         return view('Poll.completeSurvey');
 
