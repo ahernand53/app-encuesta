@@ -17,7 +17,11 @@ class User extends Model
         'lastname',
         'phone',
         'email',
-        'survey_made'
+        'survey_made',
+        'age',
+        'gender',
+        'address',
+        'civil_status'
     ];
 
     protected $guarded = [

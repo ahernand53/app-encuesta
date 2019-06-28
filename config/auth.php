@@ -49,7 +49,7 @@ return [
         'forms' => [
             'driver' => 'session',
             'provider' => 'forms'
-        ]
+        ],
     ],
 
     /*
@@ -77,12 +77,7 @@ return [
         'forms' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
-        ]
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        ],
     ],
 
     /*

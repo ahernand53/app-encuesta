@@ -15,6 +15,7 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="{{ asset('js/graphics.js') }}"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -22,11 +23,12 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
 
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark navbar-laravel">
+    <div id="app" class="container-fluid">
+        <nav class="navbar navbar-expand-md navbar-light bg-white navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ route('home') }}">
                     DASHBOARD
@@ -77,7 +79,7 @@
             </div>
         </nav>
 
-        <div class="row">
+        <div class="row" style="height: 100vh">
             <div class="bg-light border-right text-center col-md-3" id="sidebar-wrapper">
                 <br>
                 <div class="sidebar-heading">
@@ -87,12 +89,14 @@
                 <div class="list-group list-group-flush text-justify">
                     <a href="{{ route('home') }}" class="list-group-item list-group-item-action bg-light"><i
                                 class="fas fa-home"></i>&nbsp;Panel</a>
-                    <a href="{{ route('usuarios.index') }}" class="list-group-item list-group-item-action bg-light"><i
-                                class="fas fa-user"></i>&nbsp;Usuario</a>
                     <a href="{{ route('encuestas.index') }}" class="list-group-item list-group-item-action bg-light"><i
                                 class="fas fa-sticky-note"></i>&nbsp;Encuestados</a>
-                    <a href="{{ route('stages.index') }}" class="list-group-item list-group-item-action bg-light"><i
-                                class="fas fa-file-medical"></i>&nbsp;Formulario</a>
+                    @if(auth()->user()->isSuper)
+                        <a href="{{ route('usuarios.index') }}" class="list-group-item list-group-item-action bg-light"><i
+                                    class="fas fa-user"></i>&nbsp;Usuario</a>
+                        <a href="{{ route('stages.index') }}" class="list-group-item  list-group-item-action bg-light"><i
+                                    class="fas fa-file-medical"></i>&nbsp;Formulario</a>
+                    @endif
                 </div>
             </div>
 
@@ -101,5 +105,7 @@
             </main>
         </div>
     </div>
+
+@yield('scripts')
 </body>
 </html>

@@ -69,23 +69,53 @@ class AdminController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Admin  $admin
+     * @param \Illuminate\Http\Request $request
+     * @param Admin $usuario
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Validation\ValidationException
      */
-    public function update(Request $request, Admin $admin)
+    public function update(Request $request, Admin $usuario)
     {
-        //
+        $rules = [
+            'name' => 'string|max:50',
+            'lastname' => 'string|max:50',
+            'isSuper' => 'boolean',
+        ];
+
+        $this->validate($request, $rules);
+
+        if ($request->has('name')) {
+            $usuario->name = $request->get('name');
+        }
+
+        if ($request->has('lastname')) {
+            $usuario->lastname = $request->get('lastname');
+        }
+
+        if ($request->has('isSuper')) {
+            $usuario->isSuper = $request->get('isSuper');
+        }
+
+        if ($request->has('phone')) {
+            $usuario->phone = $request->get('phone');
+        }
+
+        $usuario->save();
+
+        return redirect(route('usuarios.index'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Admin  $admin
+     * @param Admin $usuario
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
-    public function destroy(Admin $admin)
+    public function destroy(Admin $usuario)
     {
-        //
+        $usuario->delete();
+
+        return redirect(route('usuarios.index'));
     }
 }

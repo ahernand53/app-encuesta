@@ -9,6 +9,7 @@ require('./bootstrap');
 require('materialize-stepper/dist/js/mstepper.min');
 require('materialize-css/dist/js/materialize');
 require('jquery/dist/jquery.min');
+require('datatables.net-dt/js/dataTables.dataTables.min');
 
 window.Vue = require('vue');
 

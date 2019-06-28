@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <table class="table table-light">
+    <table id="dt-table" class="table table-light">
         <thead class="table-dark">
             <th class="col">Nombre</th>
             <th class="col">Email</th>
@@ -32,5 +32,15 @@
         </tbody>
 
     </table>
+
+@endsection
+
+@section('scripts')
+
+    <script>
+        $(document).ready(function () {
+            $('#dt-table').DataTable();
+        })
+    </script>
 
 @endsection

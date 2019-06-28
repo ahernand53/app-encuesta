@@ -11,6 +11,26 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        factory(\App\User::class, 5)->create();
+        factory(\App\Admin::class, 5)->create();
+        DB::table('types')->insert(
+            [
+                'name' => 'seleccion multiple',
+                'max_add' => 10
+            ]
+        );
+        DB::table('types')->insert(
+            [
+                'name' => 'seleccion unica',
+                'max_add' => 10
+            ]
+        );
+        DB::table('types')->insert(
+            [
+                'name' => 'texto corto',
+                'max_add' => 1
+            ]
+        );
+
     }
 }

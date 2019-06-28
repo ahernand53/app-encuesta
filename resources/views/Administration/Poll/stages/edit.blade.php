@@ -133,7 +133,7 @@
                     <div class="col-12 w-100 mt-4">
 
 
-                        <table>
+                        <table class="col">
                             <tbody class="row justify-content-around">
 
                             @foreach($questions as $question)
@@ -143,8 +143,8 @@
                                     <td>
 
                                         <div class="col-12">
-                                            <h2>Pregunta {{ $loop->iteration }}</h2>
-                                            <select name="types[{{ $question->id }}]" id="">
+                                            <h2>Pregunta</h2>
+                                            <select name="types[{{ $question->id }}]" id="types">
                                                 @foreach($types as $type)
                                                     @if($type->name == \App\Type::OPCIONES['M'])
                                                         <option selected value="{{ $type->id }}">{{ @strtoupper($type->name) }}</option>
@@ -195,6 +195,7 @@
             <script type="text/javascript" >
                 $(document).ready(function(){
 
+
                         $("tr").prepend('<td><a class="delete btn btn-outline-danger rounded rounded-circle" href="#"><i class="fas fa-times"></i></a></td>');
                         /*                     $("tr:last-child").append('<td><a class="btn btn-success rounded rounded-circle text-dark" ><i class="fas fa-plus"></i></a></td>'); */
                         /*                     $("#addBtn").click(function() {
@@ -223,9 +224,14 @@
                             return false;
                         });
 
+                        var types = [];
+                        @foreach($types as $type)
+                            types.push("{{ $type->name }}");
+                        @endforeach
+
                         $('#addQuestion').click(function() {
                             $("tbody").append(
-                                '<tr class="mb-5 bg-white border border-primary p-3">' +
+                                '<tr class="mb-5 bg-white border p-3">' +
                                     '<td>' +
                                         '<a class="delete btn btn-outline-danger rounded rounded-circle" href="#">' +
                                             '<i class="fas fa-times" aria-hidden="true"></i>' +
@@ -233,8 +239,12 @@
                                     '</td>' +
                                     '<td>' +
                                         '<div class="col-12">' +
-                                            '<h2>Pregunta 1</h2>' +
-                                            '<select name="types[1]" id=""></select>' +
+                                            '<h2>Pregunta</h2>' +
+                                            '<select name="types[1]" id="">' +
+                                            types.forEach((item) => {
+                                                return '<option>item</option>'
+                                            }) +
+                                            '</select>' +
                                             '<br>' +
                                             '<textarea required="" name="questions[]" id="description" cols="30" rows="2"></textarea>' +
                                         '</div>' +

@@ -28,7 +28,9 @@ class Admin extends Model
     protected $guarded = [
         'account_verified',
         'remember_token',
-        'password'
+        'password',
+        'created_at',
+        'updated_at'
     ];
 
     public function type() {

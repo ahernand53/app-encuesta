@@ -59,7 +59,9 @@ class PollController extends Controller
         $user->survey_token = str_random(42);
         $user->remember_token = str_random(10);
 
-        $user->save();
+        $prueba = $user->save();
+
+        dd($prueba);
 
         return view('Poll.completeRegister');
 
@@ -106,8 +108,13 @@ class PollController extends Controller
 
         }
 
-        $userAnswered->survey_made = true;
+        $userAnswered->update([
+            'survey_made' => true
+        ]);
+
         $userAnswered->save();
+
+        dd($userAnswered);
 
         return view('Poll.completeSurvey');
 

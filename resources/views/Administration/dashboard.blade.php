@@ -61,3 +61,8 @@
         <br>
     </div>
 @endsection
+
+@section('scripts')
+
+
+@endsection
