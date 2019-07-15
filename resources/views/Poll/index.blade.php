@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
     @if(auth()->user()->survey_made)
 
         <div class="container">
@@ -20,7 +19,8 @@
 
     @else
 
-        <form class="form form-group" action="{{ route('poll.made') }}" method="post">
+        <stepper-component></stepper-component>
+        {{--<form class="form form-group" action="{{ route('poll.made') }}" method="post">
             <ul class="stepper horizontal" id="contentTypeStepper">
                 <input type="hidden" name="user" value="{{ auth()->user()->id }}">
                 @foreach($stages as $stage)
@@ -81,7 +81,7 @@
 
             </ul>
 
-        </form>
+        </form>--}}
 
     @endif
 

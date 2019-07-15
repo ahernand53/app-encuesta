@@ -13,14 +13,21 @@ require('datatables.net-dt/js/dataTables.dataTables.min');
 
 window.Vue = require('vue');
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+import BootstrapVue from 'bootstrap-vue'
+Vue.use(BootstrapVue);
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+import StagesListComponent from './components/Admins/Polls/StagesListComponent.vue'
+import StepperComponent from './components/Admins/Polls/Stepper/StepperComponent.vue'
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    components: {
+        StepperComponent,
+        'stages-list-component': StagesListComponent,
+        'stepper-component': StepperComponent
+
+    }
 });

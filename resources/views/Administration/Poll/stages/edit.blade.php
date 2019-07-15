@@ -96,7 +96,7 @@
         </div>
 
     </div>
-    
+
 @endsection
 --}}
 
@@ -106,6 +106,10 @@
 
     <div class="container my-5 px-2">
         <div class="row justify-content-center">
+
+            <div class="card">
+                <class></class>
+            </div>
 
             <form id="preguntas" action="{{ route('stages.update', $stage->id) }}" method="post">
                 @method('put')
