@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+    <stepper-component></stepper-component>
     @if(auth()->user()->survey_made)
 
         <div class="container">

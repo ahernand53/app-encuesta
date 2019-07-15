@@ -22,8 +22,12 @@
   "dependencies": {
     "bootstrap-vue": "^2.0.0-rc.25",
     "datatables.net-dt": "^1.10.19",
+    "i": "^0.3.6",
     "jquery": "^3.4.1",
     "materialize-css": "^1.0.0-rc.2",
-    "materialize-stepper": "^3.0.1"
+    "materialize-stepper": "^3.0.1",
+    "npm": "^6.10.1",
+    "vue-stepper": "^1.4.2",
+    "vuelidate": "^0.7.4"
   }
 }

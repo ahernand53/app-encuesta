@@ -20,10 +20,12 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 import StagesListComponent from './components/Admins/Polls/StagesListComponent.vue'
+import StepperComponent from './components/Admins/Polls/Stepper/StepperComponent.vue'
 
 const app = new Vue({
     el: '#app',
     components: {
-        'stages-list-component': StagesListComponent
+        'stages-list-component': StagesListComponent,
+        'stepper-component': StepperComponent
     }
 });
