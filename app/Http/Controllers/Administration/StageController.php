@@ -14,11 +14,16 @@ class StageController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return Stage[]|\Illuminate\Database\Eloquent\Collection
      */
-    public function index()
+    public function index(Request $request)
     {
         $stages = Stage::all();
+
+        if ($request->ajax()) {
+            return $stages;
+        }
 
         return view('Administration.Poll.stages.index', [
            'stages' => $stages
@@ -241,6 +246,6 @@ class StageController extends Controller
     {
         $stage->delete();
 
-        return redirect(route('stages.index'));
+        return response()->json('ok');
     }
 }
