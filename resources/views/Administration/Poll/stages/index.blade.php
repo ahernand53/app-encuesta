@@ -16,7 +16,7 @@
 
         <div class="card-body">
 
-            <div class="card-columns">
+            <div class="card-columns card-columns-index">
 
                 <div class="card bg-dark text-white p-3">
                     <div class="card-content text-center">

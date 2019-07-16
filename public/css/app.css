@@ -12766,18 +12766,34 @@ a.text-dark:focus {
 }
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
-  .card-columns {
-    -webkit-column-count: 2;
-       -moz-column-count: 2;
-            column-count: 2;
+  .card-columns-index {
+    -webkit-column-count: 2 !important;
+       -moz-column-count: 2 !important;
+            column-count: 2 !important;
   }
 }
 
 @media (min-width: 1200px) {
-  .card-columns {
-    -webkit-column-count: 2;
-       -moz-column-count: 2;
-            column-count: 2;
+  .card-columns-index {
+    -webkit-column-count: 2 !important;
+       -moz-column-count: 2 !important;
+            column-count: 2 !important;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .card-columns-create {
+    -webkit-column-count: 1 !important;
+       -moz-column-count: 1 !important;
+            column-count: 1 !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .card-columns-create {
+    -webkit-column-count: 1 !important;
+       -moz-column-count: 1 !important;
+            column-count: 1 !important;
   }
 }
 

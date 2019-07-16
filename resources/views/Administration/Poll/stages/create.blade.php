@@ -2,7 +2,106 @@
 
 @section('content')
 
-    <div class="container my-5 px-2">
+
+    <a class="btn btn-dark rounded rounded-circle ml-5" href="/dashboard/formulario/stages">⬅</a>
+    <div class="container-fluid text-center">
+        <h2>Crear Etapa</h2>
+    </div>
+
+    <form action="{{ route('stages.store') }}" method="post">
+        @method('post')
+
+        <div class="card mt-3">
+        {{-- START HEADER DE LA ETAPA --}}
+        <div class="card-header">
+            <div class="row">
+                <div class="col">
+                    <input type="text" class="form-control" value="Etapa sin titulo" name="title">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" value="Etapa sin descripcion" name="description">
+                </div>
+            </div>
+        </div>
+        {{-- END HEADER DE LA ETAPA --}}
+
+        {{-- START PREGUNTAS DE LA ETAPA --}}
+        <div class="card-content">
+
+            <div class="card-columns card-columns-create">
+
+                {{-- START PREGUNTA --}}
+                <div class="card p-2" style="background: #ccc;">
+
+                    {{-- START HEADER DE LA PREGUNTA --}}
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-9">
+                                <input type="text" class="form-control" value="Pregunta sin titulo" name="questions[1][]">
+                            </div>
+                            <div class="col-auto">
+                                <select class="custom-select" name="types[1]">
+                                    <option selected>Seleccione un tipo</option>
+                                    @foreach($types as $type)
+                                        <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- END HEADER DE LA PREGUNTA --}}
+
+                    {{-- START RESPUESTAS DE LA PREGUNTA --}}
+                    <div class="card-content m-2">
+                        <div class="row">
+                            <div class="col">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" value="Respuesta vacia" name="questions[1][]" aria-describedby="button-delete">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-danger" type="button" id="button-delete">✖</button>
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" value="Respuesta vacia" name="questions[1][]" aria-describedby="button-delete">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-danger" type="button" id="button-delete">✖</button>
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" value="Respuesta vacia" name="questions[1][]" aria-describedby="button-delete">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-danger" type="button" id="button-delete">✖</button>
+                                    </div>
+                                </div>
+                                <button class="btn btn-outline-dark form-control">Nueva respuesta</button>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- END RESPUESTAS DE LA PREGUNTA --}}
+
+                    {{-- START FOOTER DE LA PREGUNTA --}}
+                    <div class="card-footer text-right">
+                        <button class="btn btn-danger m-0">Eliminar</button>
+                    </div>
+                    {{-- END FOOTER DE LA PREGUNTA --}}
+                </div>
+                {{-- END PREGUNTA --}}
+
+            </div>
+
+        </div>
+        {{-- END PREGUNTAS DE LA ETAPA --}}
+
+        {{-- FOOTER DE LA ETAPA --}}
+        <div class="card-footer text-center">
+            <input type="submit" class="btn btn-primary m-0" value="Crear">
+        </div>
+
+    </div>
+
+    </form>
+
+    {{--<div class="container my-5 px-2">
         <div class="row justify-content-center">
 
             <form action="{{ route('stages.store') }}" method="post">
@@ -77,7 +176,7 @@
             </form>
 
         </div>
-    </div>
+    </div>--}}
 
 
     </div>

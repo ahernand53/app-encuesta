@@ -53,6 +53,7 @@ class StageController extends Controller
      */
     public function store(Request $request) {
 
+
         $rules = [
             'title' => 'required|max:150|string|unique:stages',
             'description' => 'required|max:300|string'
@@ -246,6 +247,6 @@ class StageController extends Controller
     {
         $stage->delete();
 
-        return response()->json('ok');
+        return redirect(route('stages.index'));
     }
 }
