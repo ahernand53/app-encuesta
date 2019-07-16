@@ -17,13 +17,16 @@ Route::middleware('admin')->prefix('dashboard')->group(function () {
     Route::resource('/formulario/stages', 'Administration\StageController');
 
     // USUARIOS - ADMINS
-    Route::resource('/usuarios', 'User\AdminController');
+    Route::resource('/usuarios', 'User\AdminController')->except('create');
 
     // USUARIOS - ENCUESTADOS
     Route::resource('/encuestas', 'User\UserController');
 
 });
 
+
+Route::post('/confirm', 'User\AdminController@confirm')->name('usuarios.confirm');
+Route::get('/confirm/{token}', 'User\AdminController@create')->name('usuarios.create');
 
 // --------------------- NORMAL -----------------------
 
@@ -33,4 +36,7 @@ Route::post('/register', 'Poll\PollController@sendRegister')->name('poll.send');
 
 Route::get('/form/{key}', 'Poll\PollController@makeSurvey')->name('poll.make');
 Route::post('/form/complete', 'Poll\PollController@madeSurvey')->name('poll.made');
+
+
+
 

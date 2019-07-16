@@ -2,8 +2,15 @@
 
 @section('content')
 
+    @if(isset($message))
+        <div class="alert alert-success" role="alert">
+            {{ $message }}
+        </div>
+    @endif
+
     <table class="table table-light">
-        <thead class="table-dark" >
+        <button data-toggle="modal" data-target="#createModal" class="btn btn-outline-primary form-control">➕</button>
+        <thead class="table-dark text-center" >
             <th scope="col">Nombre</th>
             <th scope="col">Email</th>
             <th scope="col">Tipo</th>
@@ -13,8 +20,11 @@
 
         <tbody>
             @foreach($admins as $admin)
+                @if($admin->id == auth()->user()->id)
+                    @continue
+                @endif
                 <tr>
-                    <td>{{ $admin->name }} {{ $admin->lastname }}</td>
+                    <td>{{ $admin->name }}</td>
                     <td>{{ $admin->email }}</td>
                     <td>
                         @if($admin->isSuper)
@@ -69,8 +79,8 @@
                                                 <div class="form-group">
                                                     <label for="message-text" class="col-form-label">Administrador</label>
                                                     <select name="isSuper">
-                                                        <option @if($admin->isSuper == 1) selected @endif value="true">SI</option>
-                                                        <option value="false">NO</option>
+                                                        <option @if($admin->isSuper) selected @endif value="1">SI</option>
+                                                        <option @if(!$admin->isSuper) selected @endif value="0">NO</option>
                                                     </select>
                                                 </div>
                                             </form>
@@ -114,5 +124,62 @@
             @endforeach
         </tbody>
     </table>
+
+    <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form action="{{ route('usuarios.store') }}" method="post">
+                @csrf
+                @method('post')
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Nuevo Administrador</h5>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label class="col-form-label">Nombre</label>
+                                <input required type="text" class="form-control" name="name">
+                            </div>
+                            <div class="form-group">
+                                <label  class="col-form-label">Apellido</label>
+                                <input required type="text" class="form-control" name="lastname">
+                            </div>
+                            <div class="form-group">
+                                <label  class="col-form-label">Email</label>
+                                <input required type="email" class="form-control" name="email">
+                            </div>
+                            <div class="form-group">
+                                <label  class="col-form-label">Telefono</label>
+                                <input required type="text" class="form-control" name="phone">
+                            </div>
+                            <div class="form-group">
+                                <label  class="col-form-label">Tipo de documento</label>
+                                <select name="document_type" id="">
+                                    <option value="cedula">CC</option>
+                                    <option value="ti">TI</option>
+                                    <option value="pasaporte">pasaporte</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label  class="col-form-label">Numero de Documento</label>
+                                <input required type="tel" class="form-control" name="document_number">
+                            </div>
+                            <div class="form-group">
+                                <label  class="col-form-label">Administrador</label>
+                                <select required name="isSuper">
+                                    <option value="1">SI</option>
+                                    <option value="0">NO</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <input type="submit" class="btn btn-primary" value="Guardar">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 
 @endsection

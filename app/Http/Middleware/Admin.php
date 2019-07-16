@@ -19,10 +19,6 @@ class Admin
             return redirect('/');
         }
 
-        if (!auth()->user()->isSuper == 1) {
-            return redirect('dashboard');
-        }
-
         return $next($request);
     }
 }
