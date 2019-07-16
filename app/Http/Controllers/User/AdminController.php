@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -28,9 +29,45 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($token)
     {
-        //
+        $admin = Admin::where('token_verification', $token)->get()->first();
+
+        if (!isset($admin)) {
+            return redirect(route('welcome'));
+        }
+
+        Auth::login($admin);
+
+        return view('Administration.Users.register', [
+            'admin' => $admin
+        ]);
+    }
+
+    public function confirm(Request $request) {
+
+        $rules = [
+            'password'              => 'required',
+            'password_confirmation' => 'required'
+        ];
+        $this->validate($request, $rules);
+
+        if ($request->get('password') != $request->get('password_confirmation')) {
+            return redirect()->back()->withInput()->withErrors([
+                'password' => 'No son iguales'
+            ]);
+        }
+
+        $admin = Admin::find($request->get('id'));
+        $admin->password = $request->get('password');
+        $admin->account_verified = Admin::ACCOUNT_VERIFIED;
+
+        $admin->save();
+
+        Auth::login($admin);
+
+        return redirect(route('home'));
+
     }
 
     /**
@@ -41,7 +78,40 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'name'              => 'required|string|max:50',
+            'lastname'          => 'required|string|max:50',
+            'email'             => 'required|email|unique:admins',
+            'document_type'     => 'required|string',
+            'document_number'   => 'required|int',
+            'isSuper'           => 'required',
+            'phone'             => 'required'
+        ];
+
+        try{
+            $this->validate($request, $rules);
+
+            $admin = new Admin();
+            $admin->name                = $request->get('name');
+            $admin->lastname            = $request->get('lastname');
+            $admin->email               = $request->get('email');
+            $admin->document_type       = $request->get('document_type');
+            $admin->document_number     = $request->get('document_number');
+            $admin->phone               = $request->get('phone');
+            $admin->isSuper             = $request->get('isSuper');
+            $admin->isSuper             = $request->get('isSuper');
+            $admin->account_verified    = Admin::ACCOUNT_NOT_VERIFIED;
+            $admin->token_verification  = str_random(42);
+
+            $admin->save();
+
+            return redirect(route('usuarios.index'))->with([
+                'message' => 'Usuario creado exitosamente'
+            ]);
+        }catch (\Exception $exception) {
+            dd($exception);
+        }
+
     }
 
     /**
@@ -78,29 +148,32 @@ class AdminController extends Controller
     {
         $rules = [
             'name' => 'string|max:50',
-            'lastname' => 'string|max:50',
-            'isSuper' => 'boolean',
+            'lastname' => 'string|max:50'
         ];
 
         $this->validate($request, $rules);
 
-        if ($request->has('name')) {
-            $usuario->name = $request->get('name');
-        }
+        try{
+            if ($request->has('name')) {
+                $usuario->name = $request->get('name');
+            }
 
-        if ($request->has('lastname')) {
-            $usuario->lastname = $request->get('lastname');
-        }
+            if ($request->has('lastname')) {
+                $usuario->lastname = $request->get('lastname');
+            }
 
-        if ($request->has('isSuper')) {
-            $usuario->isSuper = $request->get('isSuper');
-        }
+            if ($request->has('isSuper')) {
+                $usuario->isSuper = $request->get('isSuper');
+            }
 
-        if ($request->has('phone')) {
-            $usuario->phone = $request->get('phone');
-        }
+            if ($request->has('phone')) {
+                $usuario->phone = $request->get('phone');
+            }
 
-        $usuario->save();
+            $usuario->save();
+        } catch (\Exception $exception) {
+            dd($exception);
+        }
 
         return redirect(route('usuarios.index'));
     }

@@ -14,6 +14,9 @@ class Admin extends Model
     use \Illuminate\Auth\Authenticatable;
     use Notifiable;
 
+    const ACCOUNT_VERIFIED = 1;
+    const ACCOUNT_NOT_VERIFIED = 0;
+
     protected $fillable = [
         'name',
         'lastname',
@@ -22,7 +25,8 @@ class Admin extends Model
         'profile_picture',
         'document_type',
         'document_number',
-        'isSuper'
+        'isSuper',
+        'token_verification'
     ];
 
     protected $guarded = [

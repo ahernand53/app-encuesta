@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Admin;
+use App\Mail\AdminRegister;
 use App\Mail\UserRegister;
 use App\User;
 use Illuminate\Support\Facades\Mail;
@@ -20,6 +22,12 @@ class AppServiceProvider extends ServiceProvider
         User::created(function ($user) {
             Mail::to($user)->send(
                 new UserRegister($user)
+            );
+        });
+
+        Admin::created(function ($admin) {
+            Mail::to($admin)->send(
+                new AdminRegister($admin)
             );
         });
 
