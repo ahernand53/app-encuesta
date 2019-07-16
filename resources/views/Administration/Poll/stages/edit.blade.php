@@ -104,14 +104,100 @@
 
 @section('content')
 
+    <form action="{{ route('stages.update', $stage->id) }}" method="post">
+        @method('put')
+
+        <div class="card mt-3">
+            {{-- START HEADER DE LA ETAPA --}}
+            <div class="card-header">
+                <div class="row">
+                    <div class="col">
+                        <input type="text" class="form-control" value="{{ $stage->title }}" name="title">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" value="{{ $stage->description }}" name="description">
+                    </div>
+                </div>
+            </div>
+            {{-- END HEADER DE LA ETAPA --}}
+
+            {{-- START PREGUNTAS DE LA ETAPA --}}
+            <div class="card-content">
+
+                <div class="card-columns card-columns-create">
+
+                    {{-- START PREGUNTA --}}
+                    @foreach($stage->questions as $question)
+                        <div class="card p-2" style="background: #ccc;">
+
+                            {{-- START HEADER DE LA PREGUNTA --}}
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-9">
+                                        <input type="text" class="form-control" value="{{ $question->title }}" name="questions[{{ $question->id }}]">
+                                    </div>
+                                    <div class="col-auto">
+                                        <select class="custom-select" name="types[{{ $question->id }}]">
+                                            <option>Seleccione un tipo</option>
+                                            @foreach($types as $type)
+                                                @if($question->type->id == $type->id)
+                                                    <option selected value="{{ $type->id }}">{{ $type->name }}</option>
+                                                @else
+                                                    <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                                @endif
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            {{-- END HEADER DE LA PREGUNTA --}}
+
+                            {{-- START RESPUESTAS DE LA PREGUNTA --}}
+                            <div class="card-content m-2">
+                                <div class="row">
+                                    <div class="col">
+                                        @foreach($question->answers as $answer)
+                                            <div class="input-group mb-3">
+                                                <input type="text" class="form-control" value="{{ $answer->title }}" name="answers[{{ $question->id }}][{{ $answer->id }}]" aria-describedby="button-delete">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-outline-danger" type="button" id="button-delete">✖</button>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                        <button class="btn btn-outline-dark form-control">Nueva respuesta</button>
+                                    </div>
+                                </div>
+                            </div>
+                            {{-- END RESPUESTAS DE LA PREGUNTA --}}
+
+                            {{-- START FOOTER DE LA PREGUNTA --}}
+                            <div class="card-footer text-right">
+                                <button class="btn btn-danger m-0">Eliminar</button>
+                            </div>
+                            {{-- END FOOTER DE LA PREGUNTA --}}
+                        </div>
+                    @endforeach
+                    {{-- END PREGUNTA --}}
+
+                </div>
+
+            </div>
+            {{-- END PREGUNTAS DE LA ETAPA --}}
+
+            {{-- FOOTER DE LA ETAPA --}}
+            <div class="card-footer text-center">
+                <input type="submit" class="btn btn-success m-0" value="Actualizar">
+            </div>
+
+        </div>
+
+    </form>
+
     <div class="container my-5 px-2">
         <div class="row justify-content-center">
 
-            <div class="card">
-                <class></class>
-            </div>
 
-            <form id="preguntas" action="{{ route('stages.update', $stage->id) }}" method="post">
+            {{--<form id="preguntas" action="{{ route('stages.update', $stage->id) }}" method="post">
                 @method('put')
                 <a class="btn btn-dark rounded rounded-circle ml-5" href="{{ route('stages.index') }}"><i
                             class="fas fa-arrow-left"></i></a>
@@ -195,7 +281,7 @@
                         </div>
                     </div>
                 </div>
-            </form>
+            </form>--}}
             <script type="text/javascript" >
                 $(document).ready(function(){
 
