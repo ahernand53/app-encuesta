@@ -17,11 +17,10 @@ class CreateQuestionsTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->unsignedInteger('stage_id');
-            $table->unsignedInteger('type_id');
+            $table->string('type');
             $table->timestamps();
 
             $table->foreign('stage_id')->references('id')->on('stages')->onDelete('cascade');
-            $table->foreign('type_id')->references('id')->on('types');
         });
     }
 

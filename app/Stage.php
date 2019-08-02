@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Stage extends Model
 {
 
+    protected $with = [
+        'questions'
+    ];
+
     protected $fillable = [
         'id',
         'title',

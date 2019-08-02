@@ -28,6 +28,7 @@
     "materialize-stepper": "^3.0.1",
     "npm": "^6.10.1",
     "vue-stepper": "^1.4.2",
+    "vue-survey-builder": "^0.2.0",
     "vuelidate": "^0.7.4"
   }
 }

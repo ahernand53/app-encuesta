@@ -7,19 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 class Question extends Model
 {
     protected $table = 'questions';
+
+    protected $with = ['answers'];
+
     protected $fillable = [
         'id',
         'title',
-        'stage_id',
-        'type_id',
+        'type',
     ];
 
     public function stage() {
         return $this->belongsTo('App\Stage');
-    }
-
-    public function type(){
-        return $this->belongsTo('App\Type');
     }
 
     public function answers(){

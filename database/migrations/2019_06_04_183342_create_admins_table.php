@@ -25,6 +25,7 @@ class CreateAdminsTable extends Migration
             $table->string('document_number');
             $table->boolean('account_verified');
             $table->boolean('isSuper')->nullable();
+            $table->string('token_verification');
             $table->rememberToken();
             $table->timestamps();
 
