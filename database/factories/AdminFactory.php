@@ -26,6 +26,7 @@ $factory->define(App\Admin::class, function (Faker $faker) {
         'document_type' => document_type[random_int(1, 2)],
         'profile_picture' => 'url',
         'document_number' => $faker->uuid,
+        'token_verification' => str_random(10),
         'account_verified' => 1,
         'isSuper' => 1,
         'password' => bcrypt('secret'), // secret
