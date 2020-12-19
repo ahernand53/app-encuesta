@@ -11,9 +11,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // factory(\App\User::class, 5)->create();
-        factory(\App\Admin::class, 1)->create();
-        /* DB::table('types')->insert(
+        factory(\App\User::class, 5)->create();
+        factory(\App\Admin::class, 3)->create();
+        DB::table('types')->insert(
             [
                 'name' => 'seleccion multiple',
                 'max_add' => 10
@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'texto corto',
                 'max_add' => 1
             ]
-        ); */
+        );
 
     }
 }

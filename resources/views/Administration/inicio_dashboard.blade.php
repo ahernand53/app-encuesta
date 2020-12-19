@@ -1,9 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <!--Load the AJAX API-->
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script src="{{ asset('js/graphics.js') }}"></script>
+
     <div class="container">
         <br>
         <div class="row d-flex justify-content-center text-center">
@@ -48,8 +46,8 @@
         <div class="row d-flex justify-content-center">
             <div class="col-10 col-xl-5 mr-xl-4 card" id="Sarah_chart_div" style="border: 1px solid #ccc" ></div>
             <div class="col-10 col-xl-5 card" id="line_chart_div" style="border: 1px solid #ccc"></div>
-            
-            
+
+
         </div>
 <br>
         <div class="row d-flex justify-content-center">
@@ -63,4 +61,11 @@
             </div>
 <br>
     </div>
+@endsection
+
+@section("scripts")
+
+<script src="{{ asset('js/graphics.js') }}"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 @endsection

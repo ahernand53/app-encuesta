@@ -22,3 +22,4 @@ Route::get('/stages/{stage}/questions', 'api\StageController@getQuestions');
 Route::post('/stages/{stage}/questions', 'api\StageController@storeQuestion');
 Route::put('/stages/{stage}/questions/{question}', 'api\StageController@updateQuestion');
 Route::delete('/stages/{stage}/questions/{question}', 'api\StageController@storeQuestion');
+Route::get('/types', 'api\TypeController@index');

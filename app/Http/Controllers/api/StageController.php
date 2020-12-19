@@ -22,8 +22,7 @@ class StageController extends Controller
     public function index()
     {
 
-       return StageCollection::collection( Stage::all() );
-
+        return StageCollection::collection(Stage::all());
     }
 
     /**
@@ -31,26 +30,21 @@ class StageController extends Controller
      * @return StageCollection
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
 
-        $rules = [
-            'title' => 'required|max:150|string',
-            'description' => 'required|max:300|string'
-        ];
-
-        $this->validate($request, $rules);
-
-        $stage = Stage::create([
-            'title' => $request->get('title'),
-            'description' => $request->get('description')
-        ]);
+        // $stage = Stage::create([
+        //     'title' => $request->get('title'),
+        //     'description' => $request->get('description')
+        //]);
 
 
-        return new StageCollection( $stage );
+        // return new StageCollection( $stage );
 
 
-//        return redirect(route('stages.index'));
+        //        return redirect(route('stages.index'));
 
+        return $request->get('stage');
     }
 
     /**
@@ -61,7 +55,7 @@ class StageController extends Controller
      */
     public function show(Stage $stage)
     {
-        return new StageCollection( $stage );
+        return new StageCollection($stage);
     }
 
     /**
@@ -81,8 +75,10 @@ class StageController extends Controller
 
         $stage = Stage::findOrFail($stage)->first();
 
-        if ($request->get('title') != $stage->title ||
-            $request->get('description') != $stage->description) {
+        if (
+            $request->get('title') != $stage->title ||
+            $request->get('description') != $stage->description
+        ) {
 
             $this->validate($request, $rules);
             $stage->title = $request->get('title');
@@ -91,9 +87,7 @@ class StageController extends Controller
             $stage->save();
         }
 
-        return StageCollection::collection( $stage );
-
-
+        return StageCollection::collection($stage);
     }
 
     /**
@@ -110,9 +104,8 @@ class StageController extends Controller
         return redirect(route('stages.index'));
     }
 
-    public function getQuestions(Stage $stage) {}
-
-    public function storeQuestion(Stage $stage, Request $request) {
+    public function storeQuestion(Stage $stage, Request $request)
+    {
 
         $question = $request->get('question');
 
@@ -128,11 +121,11 @@ class StageController extends Controller
             );
         }
 
-        return new QuestionCollection( $questionToAdd );
-
+        return new QuestionCollection($questionToAdd);
     }
 
-    public function updateQuestion(Stage $stage, Question $question, Request $request) {
+    public function updateQuestion(Stage $stage, Question $question, Request $request)
+    {
 
         $questionToUpdate = $request->get('question');
         $question->title = $questionToUpdate['title'];
@@ -155,7 +148,6 @@ class StageController extends Controller
             }
 
             array_push($answersToKeep, $answerToKeep->id);
-
         }
 
         $answersToDelete = $question->answers()
@@ -166,17 +158,14 @@ class StageController extends Controller
             $answer->delete();
         }
 
-        return new QuestionCollection( $question );
-
-
-
+        return new QuestionCollection($question);
     }
 
-    public function destroyQuestion(Stage $stage, Question $question) {
+    public function destroyQuestion(Stage $stage, Question $question)
+    {
 
         $question->delete();
 
         return response()->json('Question delete', 200);
-
     }
 }

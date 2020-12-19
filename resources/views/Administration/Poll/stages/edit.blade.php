@@ -197,7 +197,7 @@
         <div class="row justify-content-center">
 
 
-            {{--<form id="preguntas" action="{{ route('stages.update', $stage->id) }}" method="post">
+            <form id="preguntas" action="{{ route('stages.update', $stage->id) }}" method="post">
                 @method('put')
                 <a class="btn btn-dark rounded rounded-circle ml-5" href="{{ route('stages.index') }}"><i
                             class="fas fa-arrow-left"></i></a>
@@ -281,91 +281,8 @@
                         </div>
                     </div>
                 </div>
-            </form>--}}
-            <script type="text/javascript" >
-                $(document).ready(function(){
+            </form>
 
-
-                        $("tr").prepend('<td><a class="delete btn btn-outline-danger rounded rounded-circle" href="#"><i class="fas fa-times"></i></a></td>');
-                        /*                     $("tr:last-child").append('<td><a class="btn btn-success rounded rounded-circle text-dark" ><i class="fas fa-plus"></i></a></td>'); */
-                        /*                     $("#addBtn").click(function() {
-                                                $("tbody:last-child").append("<tr><td>1</td><td>2</td><td>3</td><td></td></tr>");
-                                            }); */
-                        $(window).resize(function(){
-
-                            if ($(window).width() <= 620) {
-
-                                $("tr").addClass("card");
-                                console.log
-                            }
-                            if ($(window).width() > 620) {
-
-                                $("tr").removeClass("card");
-                                console.log
-                            }
-
-                        });
-
-
-
-                        $('.delete').click(function(){
-                            console.log($(this).parents("tr").eq(0).html());
-                            id = $(this).parents("tr").remove();
-                            return false;
-                        });
-
-                        var types = [];
-                        @foreach($types as $type)
-                            types.push("{{ $type->name }}");
-                        @endforeach
-
-                        $('#addQuestion').click(function() {
-                            $("tbody").append(
-                                '<tr class="mb-5 bg-white border p-3">' +
-                                    '<td>' +
-                                        '<a class="delete btn btn-outline-danger rounded rounded-circle" href="#">' +
-                                            '<i class="fas fa-times" aria-hidden="true"></i>' +
-                                        '</a>' +
-                                    '</td>' +
-                                    '<td>' +
-                                        '<div class="col-12">' +
-                                            '<h2>Pregunta</h2>' +
-                                            '<select name="types[1]" id="">' +
-                                            types.forEach((item) => {
-                                                return '<option>item</option>'
-                                            }) +
-                                            '</select>' +
-                                            '<br>' +
-                                            '<textarea required="" name="questions[]" id="description" cols="30" rows="2"></textarea>' +
-                                        '</div>' +
-                                    '</td>' +
-                                    '<td>' +
-                                        '<fieldset class="col-12">' +
-                                            '<legend>Respuestas</legend>' +
-                                            '<label class="font-weight-bold">1</label>' +
-                                            '<input required="" name="answers[1][1]" type="text">' +
-                                            '<br>' +
-                                            '<label class="font-weight-bold">2</label>' +
-                                            '<input required="" name="answers[1][2]"="text">' +
-                                            '<br>' +
-                                            '<label class="font-weight-bold">3</label>' +
-                                            '<input required="" name="answers[1][3]" type="text">' +
-                                            '<br>' +
-                                            '<a class="btn btn-sm btn-outline-info">Añadir respuesta</a>' +
-                                '       </fieldset>' +
-                            '       </td>' +
-                                '</tr>'
-                            );
-                        });
-
-
-                    }
-
-
-                );
-
-
-            </script>
         </div>
 
 
@@ -380,5 +297,92 @@
     </div>
     </div>
 
+@endsection
+
+@section('scripts')
+<script type="text/javascript" >
+    $(document).ready(function(){
+
+
+            $("tr").prepend('<td><a class="delete btn btn-outline-danger rounded rounded-circle" href="#"><i class="fas fa-times"></i></a></td>');
+            /*                     $("tr:last-child").append('<td><a class="btn btn-success rounded rounded-circle text-dark" ><i class="fas fa-plus"></i></a></td>'); */
+            /*                     $("#addBtn").click(function() {
+                                    $("tbody:last-child").append("<tr><td>1</td><td>2</td><td>3</td><td></td></tr>");
+                                }); */
+            $(window).resize(function(){
+
+                if ($(window).width() <= 620) {
+
+                    $("tr").addClass("card");
+                    console.log
+                }
+                if ($(window).width() > 620) {
+
+                    $("tr").removeClass("card");
+                    console.log
+                }
+
+            });
+
+
+
+            $('.delete').click(function(){
+                console.log($(this).parents("tr").eq(0).html());
+                id = $(this).parents("tr").remove();
+                return false;
+            });
+
+            var types = [];
+            @foreach($types as $type)
+                types.push("{{ $type->name }}");
+            @endforeach
+
+            $('#addQuestion').click(function() {
+                $("tbody").append(
+                    '<tr class="mb-5 bg-white border p-3">' +
+                        '<td>' +
+                            '<a class="delete btn btn-outline-danger rounded rounded-circle" href="#">' +
+                                '<i class="fas fa-times" aria-hidden="true"></i>' +
+                            '</a>' +
+                        '</td>' +
+                        '<td>' +
+                            '<div class="col-12">' +
+                                '<h2>Pregunta</h2>' +
+                                '<select name="types[1]" id="">' +
+                                types.forEach((item) => {
+                                    return '<option>item</option>'
+                                }) +
+                                '</select>' +
+                                '<br>' +
+                                '<textarea required="" name="questions[]" id="description" cols="30" rows="2"></textarea>' +
+                            '</div>' +
+                        '</td>' +
+                        '<td>' +
+                            '<fieldset class="col-12">' +
+                                '<legend>Respuestas</legend>' +
+                                '<label class="font-weight-bold">1</label>' +
+                                '<input required="" name="answers[1][1]" type="text">' +
+                                '<br>' +
+                                '<label class="font-weight-bold">2</label>' +
+                                '<input required="" name="answers[1][2]"="text">' +
+                                '<br>' +
+                                '<label class="font-weight-bold">3</label>' +
+                                '<input required="" name="answers[1][3]" type="text">' +
+                                '<br>' +
+                                '<a class="btn btn-sm btn-outline-info">Añadir respuesta</a>' +
+                    '       </fieldset>' +
+                '       </td>' +
+                    '</tr>'
+                );
+            });
+
+
+        }
+
+
+    );
+
+
+</script>
 @endsection
 

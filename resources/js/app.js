@@ -19,15 +19,20 @@ Vue.use(BootstrapVue);
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
+// components
 import StagesListComponent from './components/Admins/Polls/StagesListComponent.vue'
 import StepperComponent from './components/Admins/Polls/Stepper/StepperComponent.vue'
+
+// pages
+import Create from './pages/admin/builder/Create.vue';
 
 const app = new Vue({
     el: '#app',
     components: {
         StepperComponent,
         'stages-list-component': StagesListComponent,
-        'stepper-component': StepperComponent
+        'stepper-component': StepperComponent,
+        'create-page': Create
 
     }
 });

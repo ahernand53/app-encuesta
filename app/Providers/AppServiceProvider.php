@@ -19,17 +19,17 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
 
-        User::created(function ($user) {
-            Mail::to($user)->send(
-                new UserRegister($user)
-            );
-        });
+        // User::created(function ($user) {
+        //     Mail::to($user)->send(
+        //         new UserRegister($user)
+        //     );
+        // });
 
-        Admin::created(function ($admin) {
-            Mail::to($admin)->send(
-                new AdminRegister($admin)
-            );
-        });
+        // Admin::created(function ($admin) {
+        //     Mail::to($admin)->send(
+        //         new AdminRegister($admin)
+        //     );
+        // });
 
     }
 
